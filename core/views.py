@@ -7,6 +7,6 @@ from .models import Profile
 
 @api_view(['GET'])
 def Sample(request):
-    queryset = Profile.objects.all()
-    serializers = ProfileSerializer(queryset, many=True)
+    queryset = Profile.objects.all().first()
+    serializers = ProfileSerializer(queryset, many=False)
     return Response(serializers.data)
