@@ -10,4 +10,4 @@ class ProfileSerializer(serializers.ModelSerializer):
 class OperationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Operations
-        fields = '__all__'
+        fields = ['operation_type', 'x', 'y']
