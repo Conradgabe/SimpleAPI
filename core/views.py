@@ -32,7 +32,7 @@ def SamplePost(request):
     if queryset.is_valid():
         return Response({
             'slackUsername': slack_name,
-            'operation_type' : operation_type,
             'result': queryset1,
+            'operation_type' : operation_type,
         })
     return Response(queryset.errors)
