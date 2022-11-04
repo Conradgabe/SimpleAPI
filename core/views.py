@@ -13,26 +13,29 @@ def Sample(request):
 
 @api_view(['POST'])
 def SamplePost(request):
-    p_name = Profile.objects.all().first()
+    p_name = Profile.objects.get(id=1)
     slack_name = p_name.slackUsername
 
     slackUsername = slack_name
-    operation_type = request.POST['operation_type']
-    x = request.POST['x']
-    y = request.POST['y']
+    operation_type = request.data.get("operation_type")
+    x = request.data.get('x')
+    y = request.data.get('y')
 
     if operation_type == 'addition':
-        queryset1 = int(x) + int(y)
+        queryset1 = x + y
     elif operation_type == 'subtraction':
-        queryset1 = int(x) - int(y)
+        queryset1 = x - y
     elif operation_type == 'multiplication':
-        queryset1 = int(x) * int(y)
+        queryset1 = x * y
+    
     queryset = OperationSerializer(data=request.data)
 
     if queryset.is_valid():
+        queryset.save()
         return Response({
             'slackUsername': slack_name,
             'result': queryset1,
-            'operation_type' : operation_type,
+            'operation_type' : request.data['operation_type'],
         })
     return Response(queryset.errors)
+    
