@@ -21,11 +21,11 @@ def SamplePost(request):
     x = request.data.get('x')
     y = request.data.get('y')
 
-    if operation_type == 'addition' or 'add' or '+':
+    if operation_type == 'addition':
         queryset1 = int(x) + int(y)
-    elif operation_type == 'subtraction' or 'subtract' or '-':
+    elif operation_type == 'subtraction':
         queryset1 = int(x) - int(y)
-    elif operation_type == 'multiplication' or 'divide' or '*':
+    elif operation_type == 'multiplication':
         queryset1 = int(x) * int(y)
     
     queryset = OperationSerializer(data=request.data)

@@ -18,7 +18,7 @@ class Profile(models.Model):
 
 class Operations(models.Model):
     slackUsername = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
-    operation_type = models.CharField(max_length=20)
+    operation_type = models.CharField(max_length=14, choices=CHOICES, default='+')
     x = models.IntegerField()
     y = models.IntegerField()
 
